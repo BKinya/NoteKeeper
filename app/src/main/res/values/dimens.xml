@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="noteTextSize">18sp</dimen>
+    <dimen name="noteTitleTextPadding">3dp</dimen>
+    <dimen name="noteSubTitlePadding">8dp</dimen>
+    <dimen name="layout_margin">16dp</dimen>
+    <dimen name="activity_margin_Top">8dp</dimen>
+    <dimen name="recyclerview_margin">6dp</dimen>
+</resources>
