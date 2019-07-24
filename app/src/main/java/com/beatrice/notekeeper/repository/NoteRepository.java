@@ -1,29 +1,35 @@
 package com.beatrice.notekeeper.repository;
 
-import com.beatrice.notekeeper.model.Note;
 
-import java.util.ArrayList;
+import android.app.Application;
+
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+
+import com.beatrice.notekeeper.Dao.NoteDao;
+import com.beatrice.notekeeper.Database.NoteDatabase;
+import com.beatrice.notekeeper.entity.Note;
 
 public class NoteRepository {
-    private List<Note> notesList = new ArrayList<>();
+    private NoteDao noteDao ;
+    private LiveData<List<Note>> notesList;
+    private NoteDatabase noteDatabase;
+
+    public NoteRepository(Application application) {
+        noteDatabase = NoteDatabase.getInstance(application);
+        noteDao = noteDatabase.getNoteDao();
+        notesList = noteDao.getAllNotes();
+    }
 
     public LiveData<List<Note>> getNotes(){
-        setNotesList();
-        MutableLiveData<List<Note>> notesMutableList = new MutableLiveData<>();
-        notesMutableList.setValue(notesList);
-        return notesMutableList;
-
+        return notesList;
     }
 
-    private void setNotesList(){
-        notesList.add(new Note("Java", "Classes", "Encapsulation, Methods, Variable, Access modifiers"));
-        notesList.add(new Note("Python", "Data types", "Numbers, String, list, tuples, dictionary"));
-        notesList.add(new Note("Android", "Architecture components", "MVVM, LiveData, ViewModel, ...Room"));
+    public void insertNote(Note note){
+        noteDao.insert(note);
     }
+
 
 
 }

@@ -3,11 +3,10 @@ package com.beatrice.notekeeper.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.beatrice.notekeeper.R;
-import com.beatrice.notekeeper.model.Note;
+import com.beatrice.notekeeper.entity.Note;
 
 import java.util.List;
 
@@ -23,7 +22,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyNoteViewHold
         public MyNoteViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTxtView = itemView.findViewById(R.id.title_txtview);
-            subTitleTxtview = itemView.findViewById(R.id.subTitle_txtview);
             textTxtView = itemView.findViewById(R.id.text_txtview);
 
         }
@@ -44,8 +42,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyNoteViewHold
     public void onBindViewHolder(@NonNull MyNoteViewHolder holder, int position) {
         Note note = myNotes.get(position);
         holder.titleTxtView.setText(note.getTitle());
-        holder.subTitleTxtview.setText(note.getSubTitle());
-        holder.textTxtView.setText(note.getText());
+        holder.textTxtView.setText(note.getContent());
 
     }
 
